@@ -5,11 +5,12 @@
 #include <optional>
 #include <unordered_map>
 #include <vector>
-#include <string_view>
 
-void skipWhitespace(File& file) {
-  while (std::isspace(file.currentChar())) {
-      file.advance();
+void skipWhitespace(File& file) 
+{
+  while (std::isspace(file.currentChar())) 
+  {
+    file.advance();
   }
 }
 
@@ -21,7 +22,7 @@ static const std::unordered_map<std::string, TokenType> keywords{
 std::optional<TokenType> isKeyword(const std::string& identifierString)
 {
   auto it = keywords.find(identifierString);
-  if(it == keywords.end())
+  if (it == keywords.end())
   {
     return std::nullopt;
   }
@@ -36,7 +37,7 @@ Token getKeywordOrIdentifier(File& file)
   int columnNumber = file.getColumn();
 
   char c = file.currentChar();
-  while(std::isalnum(c) || c == '_')
+  while (std::isalnum(c) || c == '_')
   {
     value << c;
     file.advance();
@@ -51,7 +52,7 @@ Token getKeywordOrIdentifier(File& file)
     .column = columnNumber
   };
 
-  if(auto keywordTokenType = isKeyword(token.value))
+  if (auto keywordTokenType = isKeyword(token.value))
   {
     token.type = keywordTokenType.value();
   }
@@ -80,7 +81,7 @@ std::vector<Token> tokenize(const std::string& input)
   File file(input);
   std::vector<Token> tokens;
 
-  while(true)
+  while (true)
   {
     skipWhitespace(file);
     char c = file.currentChar();
