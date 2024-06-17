@@ -3,3 +3,4 @@ build
 .cmake
 .cache
 *.plist
+CMakeUserPresets.json
