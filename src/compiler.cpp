@@ -40,7 +40,7 @@ Token getKeywordOrIdentifier(File& file)
   {
     value << c;
     file.advance();
-    char c = file.currentChar();
+    c = file.currentChar();
   }
 
   // Assume it is an identifier unless the value matches a keyword
