@@ -1,4 +1,4 @@
-#include "compiler.h"
+#include "Tokenizer.h"
 
 #include <iostream>
 #include <filesystem>
@@ -49,7 +49,10 @@ int main(int argc, const char* argv[])
   if(auto result = getFileContents(argv[1]))
   {
     auto tokens = tokenize(result.value());
+    return 0;
   }
-
-  return 0;
+  else
+  {
+    return 1;
+  }
 }
