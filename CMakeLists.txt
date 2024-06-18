@@ -4,10 +4,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 23)
 
 add_library(${PROJECT_NAME} src/compiler.cpp)
-
 target_include_directories(${PROJECT_NAME} PUBLIC
   src/
 )
+
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/CompilerWarnings.cmake")
+set_project_warnings(${PROJECT_NAME})
 
 add_executable(main main.cpp)
 target_link_libraries(main ${PROJECT_NAME})

@@ -35,7 +35,7 @@ private:
 public:
   explicit File(const std::string& input): source(input){}
   int getLine(){return line;}
-  int getColumn(){return column;};
+  int getColumn(){return column;}
   char currentChar() const {
       return position < source.size() ? source[position] : '\0';
   }
