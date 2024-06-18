@@ -1,5 +1,6 @@
 #include "Tokenizer.h"
 
+#include <cstdio>
 #include <iostream>
 #include <filesystem>
 #include <fstream>
@@ -7,6 +8,7 @@
 #include <string_view>
 #include <optional>
 #include <vector>
+#include <print>
 
 std::optional<std::string> getFileContents(std::string_view filePathString)
 {
@@ -15,7 +17,7 @@ std::optional<std::string> getFileContents(std::string_view filePathString)
   // Check if the file exists
   if (!std::filesystem::exists(filePath)) 
   {
-    std::cerr << "File does not exist: " << filePath << std::endl;
+    std::println(stderr, "File does not exist: {}", filePath.string()); 
     return std::nullopt;
   }
 
@@ -23,7 +25,7 @@ std::optional<std::string> getFileContents(std::string_view filePathString)
   std::ifstream file(filePath);
   if (!file) 
   {
-    std::cerr << "Failed to open the file: " << filePath << std::endl;
+    std::println(stderr, "Failed to open file: {}", filePath.string()); 
     return std::nullopt;
   }
 
@@ -42,7 +44,7 @@ int main(int argc, const char* argv[])
 {
   if(argc != 2)
   {
-    std::cerr << "Must give file to compile";
+    std::println(stderr, "Must give file to compile in command line args");
     return 1;
   }
 
