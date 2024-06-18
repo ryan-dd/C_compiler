@@ -14,7 +14,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/CompilerWarnings.cmake")
 set_project_warnings(${PROJECT_NAME})
 
-add_executable(main main.cpp)
+add_executable(main ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 target_link_libraries(main ${PROJECT_NAME})
 
 option(CCOMPILER_BUILD_TESTS "Enable building tests." ON)
