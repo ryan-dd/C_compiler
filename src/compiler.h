@@ -22,6 +22,8 @@ struct Token
   std::string value;
   int line;
   int column;
+
+  bool operator==(const Token&) const = default;
 };
 
 class File {
