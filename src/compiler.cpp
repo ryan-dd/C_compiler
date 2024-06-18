@@ -76,6 +76,28 @@ std::optional<TokenType> isPunctuation(char c)
   return std::nullopt;
 }
 
+Token getIntegerLiteral(File& file)
+{
+  std::stringstream value{};
+  int lineNumber = file.getLine();
+  int columnNumber = file.getColumn();
+
+  char c = file.currentChar();
+  while (std::isdigit(c)) 
+  {
+    value << c;
+    file.advance();
+    c = file.currentChar();
+  }
+
+  return Token{
+    .type = TokenType::IntegerLiteral,
+    .value = value.str(),
+    .line = lineNumber,
+    .column = columnNumber
+  };
+}
+
 std::vector<Token> tokenize(const std::string& input)
 {
   File file(input);
@@ -92,17 +114,21 @@ std::vector<Token> tokenize(const std::string& input)
     {
       tokens.push_back(getKeywordOrIdentifier(file));
     }
-
-    if (auto punctuation = isPunctuation(c))
+    else if (auto punctuation = isPunctuation(c))
     {
       tokens.push_back(
         Token{
           .type = punctuation.value(),
-          .value = std::to_string(c),
+          .value = std::string{c},
           .line = file.getLine(),
           .column = file.getColumn()
         }
       );
+      file.advance();
+    }
+    else if (std::isdigit(c))
+    {
+      tokens.push_back(getIntegerLiteral(file));
     }
   }
 

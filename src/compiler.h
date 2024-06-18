@@ -12,7 +12,8 @@ enum class TokenType
   LeftBracket,
   RightBracket,
   Semicolon,
-  Return
+  Return,
+  IntegerLiteral
 };
 
 struct Token
