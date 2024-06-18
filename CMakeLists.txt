@@ -17,5 +17,9 @@ set_project_warnings(${PROJECT_NAME})
 add_executable(main main.cpp)
 target_link_libraries(main ${PROJECT_NAME})
 
-enable_testing()
-add_subdirectory(test)
+option(CCOMPILER_BUILD_TESTS "Enable building tests." ON)
+
+if(CCOMPILER_BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(test)
+endif()
