@@ -71,6 +71,7 @@ std::optional<TokenType> isPunctuation(char c)
     case ';': return TokenType::Semicolon;
     case '[': return TokenType::LeftBracket;
     case ']': return TokenType::RightBracket;
+    case ',': return TokenType::Comma;
   }
 
   return std::nullopt;

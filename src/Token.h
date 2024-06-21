@@ -1,3 +1,7 @@
+
+#ifndef TOKEN_H
+#define TOKEN_H
+
 #include <string>
 
 enum class TokenType 
@@ -12,9 +16,13 @@ enum class TokenType
   LeftBracket,
   RightBracket,
   Semicolon,
+  Comma,
   Return,
-  IntegerLiteral
+  IntegerLiteral,
+  EndOfFile
 };
+
+bool isType(TokenType tokenType);
 
 struct Token
 {
@@ -25,3 +33,5 @@ struct Token
 
   bool operator==(const Token&) const = default;
 };
+
+#endif

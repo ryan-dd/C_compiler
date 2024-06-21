@@ -5,8 +5,10 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_library(${PROJECT_NAME} 
   ${CMAKE_CURRENT_SOURCE_DIR}/src/File.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/Parser.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/Token.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/Tokenizer.cpp
-  )
+)
 target_include_directories(${PROJECT_NAME} PUBLIC
   src/
 )

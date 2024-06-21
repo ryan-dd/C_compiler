@@ -1,8 +1,11 @@
+#include "AST_Node.h"
 #include "Tokenizer.h"
+#include "Parser.h"
 
+#include <cmath>
 #include <gtest/gtest.h>
 
-TEST(TokenizerTest, MainFile)
+TEST(IntegrationTest, MainFile)
 {
   std::string input = R"(
         int main() {
@@ -32,4 +35,13 @@ TEST(TokenizerTest, MainFile)
     ASSERT_EQ(tokens[i].column, expectedTokens[i].column);
     ASSERT_EQ(tokens[i].line, expectedTokens[i].line);
   }
+
+  auto program = parse(tokens);
+  ASSERT_EQ(program.functions.size(), 1);
+
+  auto& mainFunction = program.functions.at(0);
+  ASSERT_EQ(mainFunction.returnType, expectedTokens.at(0));
+  ASSERT_EQ(mainFunction.identifier, expectedTokens.at(1));
+  ASSERT_EQ(mainFunction.body.size(), 0);
+  ASSERT_EQ(mainFunction.parameters.size(), 0);
 }

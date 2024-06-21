@@ -1,3 +1,6 @@
+#ifndef FILE_H
+#define FILE_H
+
 #include <string>
 
 class File 
@@ -8,7 +11,7 @@ private:
   int line{};
   int column{};
 public:
-  explicit File(const std::string& input): source(input){}
+  explicit File(const std::string& input): source{input}{}
   int getLine(){return line;}
   int getColumn(){return column;}
 
@@ -18,3 +21,5 @@ public:
 
   void advance(); 
 };
+
+#endif
